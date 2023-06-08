@@ -2,7 +2,7 @@
 #
 #
 
-hdfs_upload=0
+hdfs_upload=1
 
 yyyy=$(date --utc +%Y)
 yyyymmdd=$(date --utc +%Y%m%d)
