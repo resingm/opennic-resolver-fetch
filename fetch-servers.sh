@@ -9,8 +9,8 @@ yyyymmdd=$(date --utc +%Y%m%d)
 base_url="https://servers.opennic.org/"
 
 # HDFS remote directory
-hdfs_raw_dir="/usr/hadoop/opennic/resolvers/raw/year=${yyyy}"
-hdfs_csv_dir="/usr/hadoop/opennic/resolvers/csv/year=${yyyy}"
+hdfs_raw_dir="/user/hadoop/opennic/resolvers/raw/year=${yyyy}"
+hdfs_csv_dir="/user/hadoop/opennic/resolvers/csv/year=${yyyy}"
 
 extract_resolvers="extract-resolvers.py"
 base_dir="/tmp/opennic"
@@ -38,9 +38,11 @@ python3 $extract_resolvers "${base_tier2}.html" >> "${base_tier2}.csv"
 
 if (( $hdfs_upload == 1)) ; then
     # Upload raw html
+    hdfs dfs -mkdir "${hdfs_raw_dir}"
     hdfs dfs -put "${base_tier1}.html" "${hdfs_raw_dir}/${yyyymmdd}.tier1.html"
     hdfs dfs -put "${base_tier2}.html" "${hdfs_raw_dir}/${yyyymmdd}.tier2.html"
     # Upload CSVs
+    hdfs dfs -mkdir "${hdfs_csv_dir}"
     hdfs dfs -put "${base_tier1}.csv" "${hdfs_csv_dir}/${yyyymmdd}.tier1.csv"
     hdfs dfs -put "${base_tier2}.csv" "${hdfs_csv_dir}/${yyyymmdd}.tier2.csv"
 fi
