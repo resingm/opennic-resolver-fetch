@@ -28,8 +28,6 @@ base_tier1="${base_dir}/${yyyymmdd}.tier1"
 base_tier2="${base_dir}/${yyyymmdd}.tier2"
 
 # Reset files if they exist.
-echo -n "" > "${base_tier1}.html"
-echo -n "" > "${base_tier2}.html"
 echo -n "" > "${base_tier1}.csv"
 echo -n "" > "${base_tier2}.csv"
 
@@ -40,6 +38,8 @@ if [[ "$#" == "1" ]] ; then
   hdfs dfs -get "${hdfs_raw_dir}/${yyyymmdd}.tier1.html" "${base_tier1}.html"
   hdfs dfs -get "${hdfs_raw_dir}/${yyyymmdd}.tier2.html" "${base_tier2}.html"
 else
+  echo -n "" > "${base_tier1}.html"
+  echo -n "" > "${base_tier2}.html"
   echo "Fetch server lists from web ..."
   # Fetch Tier 2
   curl -ks -X GET "${base_url}?tier=2" >> "${base_tier2}.html"
