@@ -11,7 +11,7 @@ base_url="https://servers.opennic.org/"
 # Check if we gave a date as an argument
 if [[ "$#" == "1" ]] ; then
   yyyy=$(date --date="$1" +%Y)
-  yyyymmdd=$(date --date="$1" +%y%m%d)
+  yyyymmdd=$(date --date="$1" +%Y%m%d)
 fi
 
 # HDFS remote directory
