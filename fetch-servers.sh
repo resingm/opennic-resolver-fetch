@@ -56,7 +56,11 @@ python3 $extract_resolvers "${base_tier2}.html" >> "${base_tier2}.csv"
 if (( $hdfs_upload == 1)) ; then
     echo "Upload files to HDFS ..."
     
-    if [[ $# -lt 1 ]] ; then
+    if [[ $# -eq 1 ]] ; then
+      # Delete potentially existing files
+      $hdfs dfs -rm "${hdfs_csv_dir}/${yyyymmdd}.tier1.csv"
+      $hdfs dfs -rm "${hdfs_csv_dir}/${yyyymmdd}.tier2.csv"
+    else
       # Skip the upload of the files if we have a date given.
       # Upload raw html
       $hdfs dfs -mkdir -p "${hdfs_raw_dir}"
@@ -72,5 +76,5 @@ if (( $hdfs_upload == 1)) ; then
 fi
 
 if [[ "${base_dir}" != "." ]] ; then
-    rm -rf $base_dir/$
+    rm -rf $base_dir/*
 fi
