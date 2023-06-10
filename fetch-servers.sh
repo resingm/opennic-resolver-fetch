@@ -14,7 +14,7 @@ hdfs_csv_dir="/user/hadoop/opennic/resolvers/csv/year=${yyyy}"
 
 extract_resolvers="extract-resolvers.py"
 hdfs="/opt/hadoop/hadoop/bin/hdfs"
-base_dir="/tmp/opennic"
+base_dir="/srv/hdd0/share/hadoop/opennic"
 
 mkdir -p ${base_dir}
 
