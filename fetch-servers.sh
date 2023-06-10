@@ -12,7 +12,7 @@ base_url="https://servers.opennic.org/"
 hdfs_raw_dir="/user/hadoop/opennic/resolvers/raw/year=${yyyy}"
 hdfs_csv_dir="/user/hadoop/opennic/resolvers/csv/year=${yyyy}"
 
-extract_resolvers="extract-resolvers.py"
+extract_resolvers="/opt/hadoop/.local/share/opennic-resolver-fetch/extract-resolvers.py"
 hdfs="/opt/hadoop/hadoop/bin/hdfs"
 base_dir="/srv/hdd0/share/hadoop/opennic"
 
